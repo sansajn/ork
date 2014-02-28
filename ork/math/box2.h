@@ -80,7 +80,7 @@ struct box2
      * Creates a new bounding box enclosing the two given points.
      */
     box2(const vec2<type> &p, const vec2<type> &q) :
-        xmin(min(p.x, q.x)), xmax(max(p.x, q.x)), ymin(min(p.y, q.y)), ymax(max(p.y, q.y))
+        xmin(std::min(p.x, q.x)), xmax(std::max(p.x, q.x)), ymin(std::min(p.y, q.y)), ymax(std::max(p.y, q.y))
     {
     }
 
