@@ -133,7 +133,7 @@ struct box2
      */
     box2 enlarge(const vec2<type> &p) const
     {
-        return box2(min(xmin, p.x), max(xmax, p.x), min(ymin, p.y), max(ymax, p.y));
+        return box2(std::min(xmin, p.x), std::max(xmax, p.x), std::min(ymin, p.y), std::max(ymax, p.y));
     }
 
     /**
@@ -143,7 +143,7 @@ struct box2
      */
     box2 enlarge(const box2 &r) const
     {
-        return box2(min(xmin, r.xmin), max(xmax, r.xmax), min(ymin, r.ymin), max(ymax, r.ymax));
+        return box2(std::min(xmin, r.xmin), std::max(xmax, r.xmax), std::min(ymin, r.ymin), std::max(ymax, r.ymax));
     }
 
     /**

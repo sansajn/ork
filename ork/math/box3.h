@@ -109,7 +109,7 @@ template <typename type> struct box3
      */
     box3<type> enlarge(const vec3<type> &p) const
     {
-        return box3<type>(min(xmin, p.x), max(xmax, p.x), min(ymin, p.y), max(ymax, p.y), min(zmin, p.z), max(zmax, p.z));
+        return box3<type>(std::min(xmin, p.x), std::max(xmax, p.x), std::min(ymin, p.y), std::max(ymax, p.y), std::min(zmin, p.z), std::max(zmax, p.z));
     }
 
     /**
@@ -119,7 +119,7 @@ template <typename type> struct box3
      */
     box3<type> enlarge(const box3<type> &r) const
     {
-        return box3<type>(min(xmin, r.xmin), max(xmax, r.xmax), min(ymin, r.ymin), max(ymax, r.ymax), min(zmin, r.zmin), max(zmax, r.zmax));
+        return box3<type>(std::min(xmin, r.xmin), std::max(xmax, r.xmax), std::min(ymin, r.ymin), std::max(ymax, r.ymax), std::min(zmin, r.zmin), std::max(zmax, r.zmax));
     }
 
     /**
