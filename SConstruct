@@ -16,21 +16,13 @@ taskgraph_objs = env.Object(Glob('ork/taskgraph/*.cpp'))
 ui_objs = env.Object(Glob('ork/ui/*.cpp'))
 util_objs = env.Object(Glob('ork/util/*.cpp'))
 
-
 # stbi
 stbi_objs = env.Object(Glob('libraries/stbi/*.cpp'))
 
 # tinyxml
 tinyxml_objs = env.Object(Glob('libraries/tinyxml/*.cpp'))
 
-
-# examples
-common_libs = ['GL', 'GLU', 'GLEW', 'glut', 'pthread']
-
-example_objs = env.Object(Glob('examples/*.cpp'))
-
-env.Program('examples/examples', [
-	example_objs,
+ork_objs = [
 	core_objs,
 	math_objs,
 	render_objs,
@@ -40,4 +32,14 @@ env.Program('examples/examples', [
 	ui_objs,
 	util_objs,
 	tinyxml_objs,
-	stbi_objs], LIBS=common_libs)
+	stbi_objs
+]
+
+ork_lib = env.Library('libork.a', ork_objs)
+
+
+# examples
+common_libs = ['GL', 'GLU', 'GLEW', 'glut', 'pthread']
+example_objs = env.Object(Glob('examples/*.cpp'))
+
+env.Program('examples/examples', [example_objs], LIBS=[ork_lib, common_libs])
