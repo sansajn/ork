@@ -2,10 +2,15 @@
 
 env = Environment()
 
+env.Append(
+	CCFLAGS = ['-g', '-O0']
+)
+
 # ork
 env.Append(
 	CCFLAGS=['-DORK_API=', '-DTIXML_USE_STL', '-fPIC'],
-	CPPPATH=['libraries', '.'])
+	CPPPATH=['libraries', '.']
+)
 
 core_objs = env.Object(Glob('ork/core/*.cpp'))
 math_objs = env.Object(Glob('ork/math/*.cpp'))
