@@ -40,9 +40,17 @@ env.Append(
 	CPPPATH=['libraries', '.']
 )
 
-ork_lib = env.Library('libork', ork_src)
 
-env.SharedLibrary('libork', ork_src)
+# static library
+#env.Library('libork', ork_src)
+
+# shared library
+lib_ork = env.SharedLibrary('libork', ork_src)
+
+# for install option run '$ scons install'
+lib_dir = '/usr/local/lib'
+env.Install(lib_dir, lib_ork)
+env.Alias('install', lib_dir)
 
 
 # examples
@@ -52,6 +60,6 @@ example_src = Glob('examples/*.cpp')
 env.Program(
 	'examples/examples', 
 	[example_src], 
-	LIBS=[ork_lib, common_libs]
+	LIBS=[lib_ork, common_libs]
 )
 
