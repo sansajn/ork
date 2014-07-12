@@ -1,9 +1,13 @@
 # ork build script
 env = Environment()
 
-env.Append(
-	CCFLAGS = ['-g', '-O0']
-)
+AddOption('--debug-build',	action='store_true',	dest='debug_build',
+	help='debug build', default=False)
+
+if GetOption('debug_build'):
+	env.Append(CCFLAGS=['-g', '-O0'])
+else:
+	env.Append(CCFLAGS=['-Os'])
 
 # ork
 core_src = Glob('ork/core/*.cpp')
@@ -56,6 +60,7 @@ env.Alias('install', lib_dir)
 # examples
 common_libs = ['GL', 'GLU', 'GLEW', 'glut', 'pthread']
 example_src = Glob('examples/*.cpp')
+
 
 env.Program(
 	'examples/examples', 
