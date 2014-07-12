@@ -75,3 +75,9 @@ int main(int argc, char* argv[])
 {
     return mainFunction(argc, argv);
 }
+
+#include <pthread.h>  // riesi bug: Inconsistency detected by ld.so: dl-version.c:
+void junk() {
+  int i;
+  i=pthread_getconcurrency();
+};
