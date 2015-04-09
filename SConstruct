@@ -53,7 +53,7 @@ static_ork = ork_env.Library('libork', ork_src)
 # shared library
 shared_ork = ork_env.SharedLibrary('libork', ork_src)
 
-# for install option run '$ scons install'
+# for install option run '$ scons install' and then '$ sudo ldconfig'
 lib_dir = '/usr/local/lib'
 ork_env.Install(lib_dir, shared_ork)
 ork_env.Alias('install', lib_dir)
