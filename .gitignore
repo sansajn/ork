@@ -1,0 +1,26 @@
+// binary and intermediate
+*.o
+*.os
+*.a
+*.so
+log.html
+HelloWorld
+
+// scons
+*.dblite
+
+// creator project
+*.creator
+*.creator.user
+*.creator.user.*
+*.includes
+*.files
+*.config
+
+// system
+*.directory
+
+// doc
+doc/html/
+output/doc/
+doxygen.log
