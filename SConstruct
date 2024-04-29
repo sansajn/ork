@@ -1,4 +1,5 @@
 # ork build script
+# dependencies: libglew-dev <- in Ubuntu 22.04 LTS there is libglew 2.2 which is already too new for this version of ork (glew-1.5.6, needs to be installed manually)
 # run 'scons --debug-build' for debug build
 
 AddOption('--debug-build', action='store_true', dest='debug_build',
@@ -15,9 +16,9 @@ ork_env.Append(
 	CPPDEFINES=['ORK_API=', 'TIXML_USE_STL'])
 
 if GetOption('debug_build'):
-	ork_env.Append(CCFLAGS=['-g', '-O0'])
+	ork_env.Append(CCFLAGS=['-g', '-O0', '-std=c++98'])
 else:
-	ork_env.Append(CCFLAGS=['-Os'])
+	ork_env.Append(CCFLAGS=['-Os', '-std=c++98'])
 
 # ork
 core_src = Glob('ork/core/*.cpp')
