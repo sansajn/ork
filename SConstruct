@@ -7,10 +7,13 @@ AddOption('--debug-build', action='store_true', dest='debug_build',
 
 ork_env = Environment()
 
+#for Ubuntu 22.04 LTS we need to build and install glew manually and it place pkg-config files to /usr/lib64/pkgconfig directory
+ork_env.AppendENVPath('PKG_CONFIG_PATH', '/usr/lib64/pkgconfig')
+
 ork_env.ParseConfig('pkg-config --libs --cflags glew')
 
 ork_env.Append(
-	LIBS=['glut', 'pthread'],
+	LIBS=['glut', 'pthread', 'GL', 'X11', 'GLU'],  # issue: manually installed glew 1.5.6 pkg-config file is missing `-lGL -lX11 -lGLU` and so compilation fails
 	CCFLAGS=['-fPIC'],
 	CPPPATH=['libraries', '.'],
 	CPPDEFINES=['ORK_API=', 'TIXML_USE_STL'])
