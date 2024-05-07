@@ -16,7 +16,7 @@ ork_env.Append(
 	LIBS=['glut', 'pthread', 'GL', 'X11', 'GLU'],  # issue: manually installed glew 1.5.6 pkg-config file is missing `-lGL -lX11 -lGLU` and so compilation fails
 	CCFLAGS=['-fPIC'],
 	CPPPATH=['libraries', '.'],
-	CPPDEFINES=['ORK_API=', 'TIXML_USE_STL'])
+	CPPDEFINES=['ORK_API=', 'TIXML_USE_STL'])  # issue: when USEFREEGLUT is defined we are facing `[RENDER] OpenGL error 1282, returned string 'invalid operation'` errors
 
 if GetOption('debug_build'):
 	ork_env.Append(CCFLAGS=['-g', '-O0', '-std=c++98'])
