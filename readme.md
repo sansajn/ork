@@ -1,8 +1,8 @@
 # About
 
-Fork of [Ork](https://gitlab.inria.fr/neyret/ork) library with scons build support.
+Fork of [Ork](https://gitlab.inria.fr/neyret/ork) library with SCons build support.
 
-# Building
+# Build
 
 Following lines describes how to build *Ork* under *Ubuntu 22.04 LTS*.
 
@@ -85,7 +85,7 @@ line (see `SConstruct` file).
 There are missing `-lGL -lX11 -lGLU` dependencies for *glew* library in a pkg-config configuration.
 
 
-# Running
+# Run
 
 After succesfull building examples can be found in `examples` directory.
 
@@ -93,9 +93,9 @@ After succesfull building examples can be found in `examples` directory.
 $ cd examples
 $ ./examples minimal
 ```
-> TODO: still not working...
+> TODO: still not working..., see issue 2
 
-## Issue
+## Issues
 
 1. Unable to loading shared library `libGLEW.so.1.5`
 ```console
@@ -115,10 +115,30 @@ There is missig linker configuration for `/usr/lib64` in `/etc/ld.so.conf.d` dir
 
 2. *OpenGL error 1282* complain for exampes
 
-```
+```console
 $ ./examples minimal
 ERROR [RENDER] OpenGL error 1282, returned string 'invalid operation'
 invalid operation
 examples: ork/render/Program.cpp:660: void ork::Program::initUniforms(): Assertion `FrameBuffer::getError() == 0' failed.
 Aborted (core dumped)
 ```
+
+# Install
+
+To install *Ork* library run
+
+```bash
+sudo scons install
+```
+
+command and to update linker database, run
+
+```bash
+sudo ldconfig
+```
+
+> TODO: is linker searching in `/usr/local/lib` by default?
+
+command.
+
+The library is installed to `/usr/local/lib` directory.
