@@ -95,6 +95,19 @@ $ ./examples minimal
 ```
 > TODO: still not working..., see issue 2
 
+other examples are *render*, *resource*, *scenegraph*, *scenegraphresource* and *tessellation*.
+
+Run
+
+```bash
+./examples render .
+```
+
+commnad for *render* example.
+
+> TODO: how to run tests to find errors?
+
+
 ## Issues
 
 1. Unable to loading shared library `libGLEW.so.1.5`
