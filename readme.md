@@ -103,9 +103,24 @@ Run
 ./examples render .
 ```
 
-commnad for *render* example.
+commnad for *render* example or
+
+```bash
+./examples resource .
+```
+
+command for *resource* or
+
+```bash
+./examples tessellation
+```
+
+command for a tessellation sample (GLSL 4.0).
+
 
 > TODO: how to run tests to find errors?
+
+> TODO: not working examples *scenegraph*, `scenegraphresource . cubesScene`
 
 
 ## Issues
