@@ -121,6 +121,18 @@ commnad for *render* example or
 command for *resource* or
 
 ```bash
+./examples scenegraph .
+```
+
+command for *scenegraph* or
+
+```bash
+./example scenegraphresource . cubesScene|exampleScene|postprocessScene|skyboxScene
+```
+
+command for scene graph from resource file sample or
+
+```bash
 ./examples tessellation
 ```
 
@@ -128,8 +140,6 @@ command for a tessellation sample (GLSL 4.0).
 
 
 > TODO: how to run tests to find errors?
-
-> TODO: not working examples *scenegraph*, `scenegraphresource . cubesScene`
 
 
 ## Issues
@@ -160,8 +170,16 @@ examples: ork/render/Program.cpp:660: void ork::Program::initUniforms(): Asserti
 Aborted (core dumped)
 ```
 
-3. unknown sequence resource type for scenegrapg exampke
-> TODO: provide more description
+3. unknown sequence resource type for scenegraph example
+
+```console
+$ ./examples scenegraph .
+...
+ERROR [RESOURCE] Unknown resource type 'sequence' at line 1 in sequence>
+```
+
+this is because implicit resource type registration mechanism is optimized out by linker in case sequence resource part of the code is not called by an application (which is the case or runtime configuration). No idea how to force linker to not optimized out local static variables so therefore we've introduced explicit initialization as `ork::InitResourceTypes()` in `resources/InitResources.h` header.
+
 
 # Install
 

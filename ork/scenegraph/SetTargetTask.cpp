@@ -296,8 +296,10 @@ public:
 
 extern const char setTarget[] = "setTarget";
 
-static ResourceFactory::Type<setTarget, SetTargetTaskResource> SetTargetTaskType;
+void registerSetTargetResource() {
+    static ResourceFactory::Type<setTarget, SetTargetTaskResource> SetTargetTaskType;
+}
 
 /// @endcond
 
-}
+}  // ork

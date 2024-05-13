@@ -160,6 +160,8 @@ private:
     };
 };
 
-}
+void registerSetTargetResource();
+
+}  // ork
 
 #endif
