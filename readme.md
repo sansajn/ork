@@ -56,7 +56,7 @@ content
 sudo ldconfig
 ```
 
-Be aware that (`/usr/lib64/pkgconfig`) pkg-config install directory is not searched by `pkg-config` command. As a result `pkg-config` is not aware of locally installed *glew* library e.g.
+Be aware that (`/usr/lib64/pkgconfig`) pkg-config install directory is not searched by `pkg-config` command and as a result `pkg-config` is not aware of locally installed *glew* library e.g.
 
 ```console
 $ pkg-config --modversion glew
@@ -159,6 +159,9 @@ invalid operation
 examples: ork/render/Program.cpp:660: void ork::Program::initUniforms(): Assertion `FrameBuffer::getError() == 0' failed.
 Aborted (core dumped)
 ```
+
+3. unknown sequence resource type for scenegrapg exampke
+> TODO: provide more description
 
 # Install
 
