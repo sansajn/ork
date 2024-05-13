@@ -224,7 +224,7 @@ void Program::initUniforms()
     glGetProgramiv(programId, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxNameLength);
     glGetProgramiv(programId, GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH, &maxLength);
     maxNameLength = max(maxNameLength, maxLength);
-    if (FrameBuffer::getMajorVersion() >= 4) {
+    if (false && FrameBuffer::getMajorVersion() >= 4) {  // adam: disable OpenGL 4+ features (shaders are written for 3.3 anyway) because there are shader program errors in that case
         for (Stage s = VERTEX; s <= FRAGMENT; s = Stage(s + 1)) {
             glGetProgramStageiv(programId, getStage(s), GL_ACTIVE_SUBROUTINE_UNIFORM_MAX_LENGTH, &maxLength);
             maxNameLength = max(maxNameLength, maxLength);
@@ -304,7 +304,7 @@ void Program::initUniforms()
                 uoffset = offset + j * arrayStride;
             }
 
-            switch (type) {
+            switch (type) {  // creates uniform specializaton based on a type
             case GL_FLOAT:
                 u = new Uniform1f(this, block, uname, GLuint(uoffset));
                 break;
@@ -543,7 +543,7 @@ void Program::initUniforms()
     uniformSubroutines = NULL;
     dirtyStages = 0;
 
-    if (FrameBuffer::getMajorVersion() >= 4) {
+    if (false && FrameBuffer::getMajorVersion() >= 4) {  // adam: disable OpenGL 4+ features (shaders are written for 3.3 anyway) because there are shader program errors in that case
         for (Stage s = VERTEX; s <= FRAGMENT; s = Stage(s + 1)) {
             GLint n;
             glGetProgramStageiv(programId, getStage(s), GL_ACTIVE_SUBROUTINE_UNIFORMS, &n);
@@ -596,6 +596,11 @@ void Program::initUniforms()
                     }
                 }
             }
+
+            /* adam: the function call triggers glGetError with 1282 (GL_INVALID_OPERATION) value 
+            Invalid Operation: If the program has not been successfully linked, 
+            or if glGetProgramStageiv() is called without an active GL context, 
+            a GL_INVALID_OPERATION error can be generated. */
             glGetProgramStageiv(programId, getStage(s), GL_ACTIVE_SUBROUTINE_UNIFORM_LOCATIONS, &n);
             if (n > 0) {
                 if (uniformSubroutines == NULL) {
@@ -607,10 +612,13 @@ void Program::initUniforms()
                 uniformSubroutines[s] = new GLuint[n + 1];
                 uniformSubroutines[s][0] = n;
             }
+            FrameBuffer::getError();  // ignore error from glGetProgramStageiv() call
         }
     }
 
     delete[] buf;
+
+    assert(FrameBuffer::getError() == 0);  // adam: for debug purpose only
 
     // finds GPUBuffer suitable for the blocks used in this Program
     for (map<string, ptr<UniformBlock> >::iterator it = uniformBlocks.begin(); it != uniformBlocks.end(); ++it) {
