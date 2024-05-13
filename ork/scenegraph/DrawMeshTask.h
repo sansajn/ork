@@ -124,6 +124,8 @@ private:
     };
 };
 
-}
+void registerDrawMeshResource();
+
+}  // ork
 
 #endif

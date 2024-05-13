@@ -269,8 +269,10 @@ public:
 
 extern const char setTransforms[] = "setTransforms";
 
-static ResourceFactory::Type<setTransforms, SetTransformsTaskResource> SetTransformsTaskType;
+void registerSetTransformsResource() {
+    static ResourceFactory::Type<setTransforms, SetTransformsTaskResource> SetTransformsTaskType;
+}
 
 /// @endcond
 
-}
+}  // ork

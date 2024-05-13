@@ -26,6 +26,7 @@
 #include <cstdio>
 #include <cstring>
 
+#include "ork/resource/InitResources.h"
 #include "examples/Main.h"
 
 using namespace std;
@@ -73,6 +74,7 @@ int mainFunction(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
+    ork::InitResources();
     return mainFunction(argc, argv);
 }
 

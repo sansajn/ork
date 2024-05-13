@@ -107,6 +107,8 @@ private:
     ptr<TaskFactory> subtask;
 };
 
-}
+void registerLoopResource();
+
+}  // ork
 
 #endif

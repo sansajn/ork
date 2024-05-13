@@ -125,8 +125,10 @@ public:
 
 extern const char drawMesh[] = "drawMesh";
 
-static ResourceFactory::Type<drawMesh, DrawMeshTaskResource> DrawMeshTaskType;
+void registerDrawMeshResource() {
+    static ResourceFactory::Type<drawMesh, DrawMeshTaskResource> DrawMeshTaskType;
+}
 
 /// @endcond
 
-}
+}  //ork

@@ -73,6 +73,15 @@ env.AppendENVPath('PKG_CONFIG_PATH', '/usr/lib64/pkgconfig')
 
 line (see `SConstruct` file).
 
+Now finally we can run
+
+```bash
+scons -j8
+```
+
+command to build *Ork* library.
+
+
 ## Issues
 
 1. undefined reference to `glEnable`

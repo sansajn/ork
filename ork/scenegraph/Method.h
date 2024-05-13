@@ -111,6 +111,6 @@ private:
     friend class SceneNode;
 };
 
-}
+}  // ork
 
 #endif

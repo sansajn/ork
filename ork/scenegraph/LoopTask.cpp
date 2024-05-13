@@ -142,8 +142,10 @@ public:
 
 extern const char foreach[] = "foreach";
 
-static ResourceFactory::Type<foreach, LoopTaskResource> LoopTaskType;
+void registerLoopResource() {
+    static ResourceFactory::Type<foreach, LoopTaskResource> LoopTaskType;
+}
 
 /// @endcond
 
-}
+}  // ork

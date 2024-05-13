@@ -1670,7 +1670,9 @@ public:
 
 extern const char setState[] = "setState";
 
-static ResourceFactory::Type<setState, SetStateTaskResource> SetStateTaskType;
+void registerSetStateResource() {
+    static ResourceFactory::Type<setState, SetStateTaskResource> SetStateTaskType;
+}
 
 /// @endcond
 

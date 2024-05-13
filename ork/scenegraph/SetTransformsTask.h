@@ -193,6 +193,8 @@ private:
     friend class Impl;
 };
 
-}
+void registerSetTransformsResource();
+
+}  // ork
 
 #endif

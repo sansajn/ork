@@ -106,8 +106,10 @@ public:
 
 extern const char sequence[] = "sequence";
 
-static ResourceFactory::Type<sequence, SequenceTaskResource> SequenceTaskType;
+void registerSequenceResource() {
+    static ResourceFactory::Type<sequence, SequenceTaskResource> SequenceTaskType;
+}
 
 /// @endcond
 
-}
+}  // ork

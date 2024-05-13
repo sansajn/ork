@@ -128,6 +128,8 @@ private:
     };
 };
 
-}
+void registerSetProgramResource();
+
+}  // ork
 
 #endif

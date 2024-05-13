@@ -157,8 +157,10 @@ public:
 
 extern const char setProgram[] = "setProgram";
 
-static ResourceFactory::Type<setProgram, SetProgramTaskResource> SetProgramTaskType;
+void registerSetProgramResource() {
+    static ResourceFactory::Type<setProgram, SetProgramTaskResource> SetProgramTaskType;
+}
 
 /// @endcond
 
-}
+}  // ork

@@ -71,3 +71,8 @@ ork_env.Program(
 ork_env.Program(  # not working 'undefined symbol: __glewVertexAttrib4Nsv'
 	'examples/examples-shared', [example_src, shared_ork])
 
+# tests
+test_src = Glob('test/*.cpp')
+
+ork_env.Program(
+	'test/test', [test_src, static_ork])

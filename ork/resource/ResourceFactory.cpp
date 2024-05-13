@@ -25,6 +25,8 @@
 
 #include "ork/resource/ResourceManager.h"
 
+#include <iostream>
+
 using namespace std;
 
 namespace ork
@@ -43,6 +45,7 @@ ResourceFactory *ResourceFactory::getInstance()
 void ResourceFactory::addType(const string &type, createFunc f)
 {
     types[type] = f;
+    std::clog << type << " type registered" << std::endl;
 }
 
 ptr<Object> ResourceFactory::create(ptr<ResourceManager> manager, const string &name,

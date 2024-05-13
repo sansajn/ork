@@ -336,6 +336,8 @@ private:
     friend class Impl;
 };
 
-}
+void registerSetStateResource();
+
+}  // ork
 
 #endif

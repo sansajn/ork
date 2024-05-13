@@ -83,6 +83,8 @@ private:
     QualifiedName method;
 };
 
-}
+void registerCallMethodResource();
+
+}  // ork
 
 #endif

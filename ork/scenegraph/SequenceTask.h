@@ -77,6 +77,8 @@ private:
     std::vector< ptr<TaskFactory> > subtasks;
 };
 
-}
+void registerSequenceResource();
+
+}  // ork
 
 #endif

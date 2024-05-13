@@ -93,8 +93,10 @@ public:
 
 extern const char callMethod[] = "callMethod";
 
-static ResourceFactory::Type<callMethod, CallMethodTaskResource> CallMethodTaskType;
+void registerCallMethodResource() {
+    static ResourceFactory::Type<callMethod, CallMethodTaskResource> CallMethodTaskType;
+}
 
 /// @endcond
 
-}
+}  // ork
