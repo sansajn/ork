@@ -74,7 +74,7 @@ int mainFunction(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-    ork::InitResources();
+    ork::InitResourceTypes();
     return mainFunction(argc, argv);
 }
 

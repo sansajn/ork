@@ -1,4 +1,5 @@
 #ifdef _VERTEX_
+#extension GL_ARB_texture_cube_map_array : enable
 
 layout (location = 0) in vec3 vertex;
 out vec3 dir;
@@ -19,7 +20,6 @@ in vec3 dir;
 layout (location = 0) out vec4 data;
 
 #ifdef CUBEMAPARRAY
-#extension GL_ARB_texture_cube_map_array : enable
 uniform samplerCubeArray skymap;
 uniform float map;
 #else
