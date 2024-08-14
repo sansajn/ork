@@ -16,7 +16,7 @@ command.
 
 - install *glew* dependencies with
 ```bash
-sudo apt install libxmu-dev
+sudo apt install libxmu-dev libglu1-mesa-dev libglut-dev
 ```
 command
 
@@ -26,6 +26,7 @@ cd glew-1.5.6
 make -j8
 ```
 command
+> **note**: works only with tarball (not zip glew library file)
 
 - install with to `/usr` directory with
 ```bash
@@ -102,7 +103,6 @@ After succesfull building examples can be found in `examples` directory.
 $ cd examples
 $ ./examples minimal
 ```
-> TODO: still not working..., see issue 2
 
 other examples are *render*, *resource*, *scenegraph*, *scenegraphresource* and *tessellation*.
 
