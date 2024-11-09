@@ -4,13 +4,15 @@ Fork of [Ork](https://gitlab.inria.fr/neyret/ork) library with SCons build suppo
 
 # Build
 
-Following lines describes how to build *Ork* under *Ubuntu 22.04 LTS*.
+Following lines describes how to build *Ork* under *Ubuntu 24.04 LTS* (*Ubuntu 22.04 LTS*).
 
 - download *glew* library from [glew](https://glew.sourceforge.net/) page where 1.5.6 version can be downloaded [here](https://sourceforge.net/projects/glew/files/glew/1.5.6/)
 
+> **note**: We can't install *glew* from repository because the current *Ubuntu 22.04 LTS* already contains version 2.2 which is not API compatible with the older one.
+
 - unpack with
 ```bash
-tar -xaf glew-1.5.6.tgz	
+tar -xaf glew-1.5.6.tgz
 ```
 command.
 
@@ -27,25 +29,24 @@ make -j8
 ```
 command
 
-- install with to `/usr` directory with
+- install to `/usr/local` directory with
 ```bash
-sudo make install
+sudo make GLEW_DEST=/usr/local install
 ```
-command. Where *glew* library in installed to `/usr` directory.
+command. Where *glew* library in installed to `/usr/local` directory.
 
-
-- create linker configuration for `/usr/lib64` where *glew* was installed. Go to configuration directory with
+- create linker configuration for `/usr/local/lib64` where *glew* was installed. Go to configuration directory with
 
 ```bash
 cd /etc/ld.so.conf.d
 ```
 
-and create `usr_lib64.conf` with following
+and create `usr_local.conf` with following
 
 ```console
-$ cat usr_lib64.conf 
-# linker configuration for /usr/lib64
-/usr/lib64
+$ cat usr_local.conf
+# linker configuration for /usr/local
+/usr/local/lib64
 ```
 
 content
@@ -56,19 +57,19 @@ content
 sudo ldconfig
 ```
 
-Be aware that (`/usr/lib64/pkgconfig`) pkg-config install directory is not searched by `pkg-config` command and as a result `pkg-config` is not aware of locally installed *glew* library e.g.
+Be aware that (`/usr/local/lib64/pkgconfig`) pkg-config install directory is not searched by `pkg-config` command and as a result `pkg-config` is not aware of locally installed *glew* library e.g.
 
 ```console
 $ pkg-config --modversion glew
 2.2.0
 ```
 
-can return 2.2.0 (verson of *glew* library installed by package manager) instead of 1.5.6 version installed manually.
+can return 2.2.0 (version of *glew* library installed by package manager) instead of 1.5.6 version installed manually.
 
 This can be solved by setting `PKG_CONFIG_PATH` environment variable from build script with
 
 ```python
-env.AppendENVPath('PKG_CONFIG_PATH', '/usr/lib64/pkgconfig')
+env.AppendENVPath('PKG_CONFIG_PATH', '/usr/local/lib64/pkgconfig')
 ```
 
 line (see `SConstruct` file).
@@ -80,7 +81,6 @@ scons -j8
 ```
 
 command to build *Ork* library.
-
 
 ## Issues
 
@@ -96,15 +96,14 @@ There are missing `-lGL -lX11 -lGLU` dependencies for *glew* library in a pkg-co
 
 # Run
 
-After succesfull building examples can be found in `examples` directory.
+After successful build, examples can be found in `examples` directory.
 
 ```console
 $ cd examples
 $ ./examples minimal
 ```
-> TODO: still not working..., see issue 2
 
-other examples are *render*, *resource*, *scenegraph*, *scenegraphresource* and *tessellation*.
+there are also *render*, *resource*, *scenegraph*, *scenegraphresource* and *tessellation* examples there.
 
 Run
 
@@ -112,7 +111,7 @@ Run
 ./examples render .
 ```
 
-commnad for *render* example or
+command for *render* example or
 
 ```bash
 ./examples resource .
@@ -150,7 +149,7 @@ $ ./examples
 ./examples: error while loading shared libraries: libGLEW.so.1.5: c/etc/ld.so.conf.dannot open shared object file: No such file or directory
 ```
 
-The root cause is that the library in not in a linker cache. 
+The root cause is that the library in not in a linker cache.
 
 ```console
 $ ldconfig -p|grep -i glew
@@ -159,6 +158,7 @@ $ ldconfig -p|grep -i glew
 ```
 
 There is missig linker configuration for `/usr/lib64` in `/etc/ld.so.conf.d` directory.
+> TODO: what needs to be done in that case? How to fix it.
 
 2. *OpenGL error 1282* complain for exampes
 
