@@ -7,7 +7,7 @@ AddOption('--debug-build', action='store_true', dest='debug_build',
 
 ork_env = Environment()
 
-#for Ubuntu 22.04 LTS we need to build and install glew manually and it place pkg-config files to /usr/local/lib64/pkgconfig directory
+# for Ubuntu 22.04 LTS we need to build and install glew manually and it place pkg-config files to /usr/local/lib64/pkgconfig directory
 ork_env.AppendENVPath('PKG_CONFIG_PATH', '/usr/local/lib64/pkgconfig')
 
 ork_env.ParseConfig('pkg-config --libs --cflags glew')

@@ -21,6 +21,7 @@ HelloWorld
 *.directory
 
 // doc
+doc/doc/
 doc/html/
 output/doc/
 doxygen.log

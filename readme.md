@@ -201,3 +201,15 @@ sudo ldconfig
 command.
 
 The library is installed to `/usr/local/lib` directory.
+
+# Documentation
+
+To build documentation execute
+
+```bash
+cd doc
+doxygen
+```
+
+commands, where documentation is stored into `doc/doc/html` directory (open `index.html` file).
+
